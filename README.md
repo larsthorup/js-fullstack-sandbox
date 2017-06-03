@@ -2,19 +2,32 @@
 
 ## database
 
-* configure a PostgreSQL instance, e.g. on elephantsql.com
-* run `recreate.sql` on the instance
+    # configure a PostgreSQL instance, e.g. on elephantsql.com
+    # run `recreate.sql` on the instance
+
+## app
+
+    cd app
+    npm install
+    npm start
 
 ## server
 
     # create .env from .env-sample and set DATABASE 
+    cd server
     npm install
-    node server
+    npm start
 
-## app
+## run locally
 
-ToDo
+    # start app
+    # start server
+    # open http://localhost:3000/
 
 ## deploy
 
-ToDo
+    cd app
+    npm run build
+    # todo: copy app/build/* to server/...
+    # todo: now
+    # todo: open site
