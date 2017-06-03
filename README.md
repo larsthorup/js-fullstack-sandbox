@@ -1,33 +1,43 @@
 # js-fullstack-sandbox
 
-## database
+## initial setup
 
+    # database
     # configure a PostgreSQL instance, e.g. on elephantsql.com
-    # run `recreate.sql` on the instance
+    # create server/.env from .env-sample and set DATABASE 
 
-## app
+    # hosting with zeit.co
+    npm install -g now
+    now login
 
+    # node.js dependencies
     cd app
     npm install
-    npm start
-
-## server
-
-    # create .env from .env-sample and set DATABASE 
-    cd server
+    cd ../server
     npm install
-    npm start
+
+
+## database
+
+    # run `recreate.sql` on the instance
 
 ## run locally
 
-    # start app
-    # start server
-    # open http://localhost:3000/
+Use two terminals:
+
+1:
+
+    cd server
+    npm start
+
+2:
+
+    cd app
+    npm start
+
 
 ## deploy
 
-    cd app
+    cd server
     npm run build
-    # todo: copy app/build/* to server/...
-    # todo: now
-    # todo: open site
+    now
