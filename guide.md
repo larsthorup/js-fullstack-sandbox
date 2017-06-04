@@ -18,7 +18,7 @@ We will use the ElephantSQL service to get a cloud hosted PostgreSQL database us
 
     https://www.elephantsql.com/
 
-When you have created a database instance, use the "SQL Browser" to create a table and insert some data by pasting this SQL script and executing it:
+When you have created a database instance, go to the "Browser" tab for the instance. Here you can create a table and insert some data by pasting this SQL script and executing it:
 
     drop table if exists dream;
     
@@ -31,7 +31,7 @@ When you have created a database instance, use the "SQL Browser" to create a tab
     insert into dream (title) values ('Visit Zaire');
     insert into dream (title) values ('Write a sci-fi novel');
 
-On the instance details page you can find the database URL which we will need in a moment.
+On the "Details" tab of the instance you can find the database URL which we will need in a moment.
 
 ## Back-end
 
@@ -50,7 +50,7 @@ Then install the tools that we will depend on for the back-end:
  
     npm install --save dotenv express fs-extra pg-promise
      
-Then create a file with all the back-end code, called `index.js`:
+Then create a file with all the back-end code, called `server.js`:
 
     require('dotenv').config();
     const express = require('express');
@@ -71,6 +71,10 @@ Then create a file with all the back-end code, called `index.js`:
       console.log(`Server is listening on port ${port}`);
     }
     app.listen(port, listeningHandler);
+
+Configure this file as the main entry point by adding the following line to the beginning of the `scripts` section of `package.json`:
+                                               
+   "start": "node server",
 
 We tell the back-end to connect to our database using the URL we got on the ElephantSQL details page by creating a file called `.env`:
 
@@ -152,7 +156,7 @@ We want our app to fetch and display data from our back-end. Let's create a Reac
     
     export default DreamList;
  
-We need to render this component inside the main App component, so we will add this line in App.js after the `<p>...</p>` element:
+We need to render this component inside the main App component, so we will add this line in `App.js` after the `<p>...</p>` element:
 
     <DreamList />
 
@@ -204,17 +208,16 @@ You can now run this build step in a third terminal window with:
     cd your-project-directory-name/server
     npm run build
 
-Then we need to write the code so the back-end will serve the bundled front-end files. Add this code to the end of `server/index.js`:
+Then we need to write the code so the back-end will serve the bundled front-end files. Add this code to the end of `server/server.js`:
 
     app.use(express.static('app')); // Note: serve app as static assets
     app.get("/", function (request, response) { // Note: redirect root URL to index.html in app
       response.sendFile(__dirname + '/app/index.html');
     });
 
-The last step will be to create the configuration for `now`. Add the following lines to the beginning of the `scripts` section of `server/package.json`:
+The last step will be to create the configuration for `now`. Add the following line to the beginning of the `scripts` section of `server/package.json`:
 
     "now-build": "echo already built",
-    "start": "node index",
 
 Then add the following configuration in the same file right after the initial `{` character:
     
@@ -222,7 +225,7 @@ Then add the following configuration in the same file right after the initial `{
       "files": [
         "app",
         ".env",
-        "index.js"
+        "server.js"
       ]
     },
 
