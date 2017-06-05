@@ -61,8 +61,7 @@ Then create a file with all the back-end code, called `server.js`:
     const app = express();
     
     async function dreamsGetHandler (request, response) {
-      const rowList = await db.query('select * from dream');
-      const dreamList = rowList.map(row => row.title);
+      const dreamList = await db.map('select * from dream', [], a => a.title);
       response.send(dreamList);
     }
     app.get("/api/dreams", dreamsGetHandler);
