@@ -27,9 +27,11 @@ When you have created a database instance, go to the "Browser" tab for the insta
       title varchar(255)
     );
     
-    insert into dream (title) values ('Compose a tune');
-    insert into dream (title) values ('Visit Zaire');
-    insert into dream (title) values ('Write a sci-fi novel');
+    insert into dream (title) 
+    values 
+        ('Compose a tune'), 
+        ('Visit Zaire'), 
+        ('Write a sci-fi novel');
 
 On the "Details" tab of the instance you can find the database URL which we will need in a moment.
 
@@ -39,44 +41,47 @@ Install the latest version of Node.js from
 
     https://nodejs.org/
 
-Create a project directory somewhere on your computer and open a terminal in this directory, then create a `server` directory for the back-end code and initialize it with a `package.json` file:
+Create a project directory somewhere on your computer and open a terminal in this directory, then run the following commands:
 
     cd your-project-directory-name
     mkdir server
     cd server
     npm init --yes
     
+You have now created a `server` directory for the back-end code and initialized it with a `package.json` file.
+    
 Then install the tools that we will depend on for the back-end:
  
     npm install --save dotenv express fs-extra pg-promise
      
-Then create a file with all the back-end code, called `server.js`:
+Then create a file inside the `server` directory with all the back-end code, called `server.js`:
 
-    require('dotenv').config();
-    const express = require('express');
-    const pgp = require('pg-promise')();
-    const db = pgp(process.env.DATABASE);
+    require('dotenv').config(); // https://www.npmjs.com/package/dotenv
+    const express = require('express'); // https://www.npmjs.com/package/express
+    const pgp = require('pg-promise')(); // https://www.npmjs.com/package/pg-promise
+    
+    const db = pgp(process.env.DATABASE); // Note: connect to database
     const port = 3001; // Note: must match port of the "proxy" URL in app/package.json
     
-    const app = express();
+    const app = express(); // Note: create express application instance
     
     async function dreamsGetHandler (request, response) {
       const rowList = await db.query('select * from dream');
       const dreamList = rowList.map(row => row.title);
       response.send(dreamList);
     }
-    app.get("/api/dreams", dreamsGetHandler);
+    app.get("/api/dreams", dreamsGetHandler); // Note: register express route
     
     function listeningHandler () {
       console.log(`Server is listening on port ${port}`);
     }
-    app.listen(port, listeningHandler);
+    app.listen(port, listeningHandler); // Note: start express application
 
 Configure this file as the main entry point by adding the following line to the beginning of the `scripts` section of `package.json`:
                                                
-   "start": "node server",
+    "start": "node server",
 
-We tell the back-end to connect to our database using the URL we got on the ElephantSQL details page by creating a file called `.env`:
+We tell the back-end to connect to our database using the URL we got on the ElephantSQL details page by creating a file called `.env` with this content:
 
     DATABASE=your PostgreSQL connection URL
 
@@ -249,6 +254,7 @@ To extend your application you may need to learn more about how to use the tools
 * [React tutorial](https://facebook.github.io/react/tutorial/tutorial.html)
 * [React documentation](https://facebook.github.io/react/docs/hello-world.html) 
 * [PostgreSQL documentation](https://www.postgresql.org/docs/current/static/index.html)
+* [pg-promise documentation](https://github.com/vitaly-t/pg-promise)
 * [Express documentation](https://expressjs.com/en/4x/api.html)
 * [Zeit Now documentation](https://zeit.co/docs/features/now-cli#)
 * Modern JavaScript: [Learn ES-2015](https://babeljs.io/learn-es2015/)
