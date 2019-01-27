@@ -1,6 +1,6 @@
 # js-fullstack-sandbox
 
-This project is a working example of a simple full stack JavaScript application using PostgreSQL, Express.js and React. You can create your own project from scratch by following [the guide](guide.md).
+This project is a working example of a simple full stack JavaScript application using PostgreSQL, Express.js and React. You can create your own project from scratch by following [the guide](https://www.fullstackagile.eu/2017/06/04/js-sql-fullstack-guide/).
 
 ## initial setup
 
