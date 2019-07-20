@@ -7,7 +7,7 @@
     "app:copy": "node copyApp",
     "build": "npm run app:build && npm run app:copy",
     "now-build": "echo already built",
-    "start": "node server",
+    "start": "node src/main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lars Thorup <lars@zealake.com> (http://github.com/larsthorup)",
@@ -16,14 +16,14 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "fs-extra": "^8.1.0",
-    "pg-promise": "^8.7.3"
+    "pg-promise": "^8.7.5"
   },
   "devDependencies": {},
   "now": {
     "files": [
-      "app",
       ".env",
-      "server.js"
+      "app",
+      "src"
     ],
     "public": true
   }

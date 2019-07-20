@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 
 class DreamList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      dreamList: []
-    };
-  }
+  state = {
+    dreamList: []
+  };
 
   async componentDidMount() {
     const response = await fetch('/api/dreams');
@@ -16,14 +13,14 @@ class DreamList extends Component {
 
   render() {
     return (
-    <div className="DreamList">
-      <h3>All my dreams</h3>
-      <ul>
-      {this.state.dreamList.map(dream =>
-        <li key={dream}>{dream}</li>
-      )}
-      </ul>
-    </div>
+      <div className="DreamList">
+        <h3>All my dreams</h3>
+        <ul>
+        {this.state.dreamList.map(dream =>
+          <li key={dream.id}>{dream.title}</li>
+        )}
+        </ul>
+      </div>
     );
   }
 }
