@@ -13,7 +13,7 @@ app.get("/", function (request, response) { // Note: redirect root URL to index.
 });
 
 async function dreamsGetHandler (request, response) {
-  const rowList = await db.query('select * from dream');
+  const rowList = await db.query('select * from dream order by title');
   response.send(rowList);
 }
 app.get("/api/dreams", dreamsGetHandler);
