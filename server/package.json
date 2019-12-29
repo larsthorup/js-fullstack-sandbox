@@ -13,10 +13,10 @@
   "author": "Lars Thorup <lars@zealake.com> (http://github.com/larsthorup)",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs-extra": "^8.1.0",
-    "pg-promise": "^8.7.5"
+    "pg-promise": "^10.3.2"
   },
   "devDependencies": {},
   "now": {
