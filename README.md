@@ -4,11 +4,11 @@ This project is a working example of a simple full stack JavaScript application 
 
 ## initial setup
 
-    # database
+    # database hosting
     # configure a PostgreSQL instance, e.g. on elephantsql.com
-    # create server/.env from .env-sample and set DATABASE 
+    # create server/src/env.json from .env.sample.json and set DATABASE 
 
-    # hosting with Netlify
+    # web hosting
     npm install -g netlify-cli
     netlify login
     netlify status # to get your team name, such as lars-1234567
@@ -32,7 +32,6 @@ Use two terminals:
 
 1:
 
-    cd server
     netlify dev
 
 2:
