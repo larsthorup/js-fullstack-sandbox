@@ -6,7 +6,7 @@ class DreamList extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch('/api/dreams');
+    const response = await fetch('/.netlify/functions/dreams');
     const dreamList = await response.json();
     this.setState({dreamList});
   }

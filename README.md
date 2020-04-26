@@ -8,9 +8,12 @@ This project is a working example of a simple full stack JavaScript application 
     # configure a PostgreSQL instance, e.g. on elephantsql.com
     # create server/.env from .env-sample and set DATABASE 
 
-    # hosting with zeit.co
-    npm install -g now
-    now login
+    # hosting with Netlify
+    npm install -g netlify-cli
+    netlify login
+    netlify status # to get your team name, such as lars-1234567
+    netlify sites:create --name dreams-lars-1234567 --account-slug lars-1234567
+    netlify link --name dreams-lars-1234567
 
     # node.js dependencies
     cd app
@@ -30,7 +33,7 @@ Use two terminals:
 1:
 
     cd server
-    npm start
+    netlify dev
 
 2:
 
@@ -40,6 +43,8 @@ Use two terminals:
 
 ## deploy
 
-    cd server
+    cd app
     npm run build
-    now
+    cd ..
+    netlify deploy --prod
+    netlify open:site

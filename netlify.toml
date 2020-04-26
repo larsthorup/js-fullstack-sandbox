@@ -1,0 +1,4 @@
+[build]
+  base = "./"
+  publish = "./app/build"
+  functions = "./server/src/api"
