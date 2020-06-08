@@ -9,7 +9,7 @@
   "author": "Lars Thorup <lars@zealake.com> (http://github.com/larsthorup)",
   "license": "MIT",
   "dependencies": {
-    "pg-promise": "^10.3.2"
+    "pg-promise": "^10.5.6"
   },
   "devDependencies": {}
 }
