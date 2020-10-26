@@ -1,6 +1,4 @@
-const env = require('./env.json')
-const pgp = require('pg-promise')();
-const db = pgp(env.DATABASE);
+const db = require('./utils/db');
 
 exports.handler = async (event) => {
   switch (event.httpMethod) {
@@ -8,10 +6,10 @@ exports.handler = async (event) => {
       const rowList = await db.query('select * from dream order by title');
       return {
         statusCode: 200,
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(rowList)
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(rowList),
       };
     default:
-      return { statusCode: 405, body: '' }
+      return { statusCode: 405, body: '' };
   }
-}
+};

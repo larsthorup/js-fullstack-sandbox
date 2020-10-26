@@ -11,5 +11,8 @@
   "dependencies": {
     "pg-promise": "^10.5.6"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "prettier": {
+    "singleQuote": true
+  }
 }
